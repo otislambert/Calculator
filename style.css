@@ -26,10 +26,10 @@ body {
 }
 
 #screen {
-	height: 50px;
+	height: 100px;
 	width: 80%;
 	background-color: orange;
-	margin: 30px;
+	margin: 20px 5px;
 	align-items: center;
 	justify-content: flex-end
 }
@@ -53,7 +53,7 @@ p {
 	". 0 .";
 }
 
-.number {
+.button {
 	height: 50px;
 	width: 50px;
 	margin: 10px;
@@ -63,7 +63,13 @@ p {
 	transition-duration: 50ms;
 }
 
-.number:hover {
+.button:hover {
 	border: orange solid 2px;
 	color: orange;
+}
+
+#operators {
+	flex-wrap: wrap;
+	border: none;
+	justify-content: center;
 }

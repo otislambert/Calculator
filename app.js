@@ -9,6 +9,7 @@ const equalBtn = document.querySelector('#equals');
 // sets the stage for functions
 let operation = 'place';
 let a = '';
+let operated = false;
 
 numbtns.forEach(btn => btn.addEventListener('click', placeNum));
 
@@ -29,6 +30,16 @@ function operate() {
 	if (operation == 'add') {
 		addition();
 	}
+	if (operation == 'subtract') {
+		subtraction();
+	}
+	if (operation == 'multiply') {
+		multiplication();
+	}
+	if (operation == 'divide') {
+		division();
+	}
+	operated = true;
 }
 
 const operations = ['add', 'subtract', 'multiply', 'divide'];
@@ -36,14 +47,20 @@ const operations = ['add', 'subtract', 'multiply', 'divide'];
 function placeNum(e) {
 	let result = '';
 	let screenContent = calcScreen.textContent;
-	if (operations.includes(calcScreen.textContent)) {
+	if (operations.includes(calcScreen.textContent) || operated) {
 		result = e.target.id;
 	}
 	else {
-		result = screenContent + e.target.id;
+		if(e.target.id == '.' && calcScreen.textContent.includes('.')) {
+			result = calcScreen.textContent;
+		}
+		else {
+			result = screenContent + e.target.id;
+		}
 	}
 	calcScreen.textContent = result;
 	console.log(result);
+	operated = false;
 }
 
 // calculator operations

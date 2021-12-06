@@ -7,7 +7,7 @@ const clearBtn = document.querySelector('#clear');
 const equalBtn = document.querySelector('#equals');
 
 // sets the stage for functions
-let operation = 'place';
+let operation = '';
 let a = '';
 let operated = false;
 

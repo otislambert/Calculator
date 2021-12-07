@@ -8,8 +8,10 @@ const equalBtn = document.querySelector('#equals');
 
 // sets the stage for functions
 let operation = '';
-let a = '';
+
 let operated = false;
+
+let a = '';
 
 numbtns.forEach(btn => btn.addEventListener('click', placeNum));
 
@@ -86,4 +88,6 @@ function division() {
 
 function clear() {
 	calcScreen.textContent = '';
+	operated = false;
+	a = '';
 }

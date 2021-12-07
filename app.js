@@ -10,8 +10,10 @@ const equalBtn = document.querySelector('#equals');
 let operation = '';
 
 let operated = false;
+let opString = false;
 
 let a = '';
+let b = '';
 
 numbtns.forEach(btn => btn.addEventListener('click', placeNum));
 
@@ -22,9 +24,17 @@ clearBtn.addEventListener('click', clear);
 equalBtn.addEventListener('click', operate);
 
 function setOperation(e) {
-	a = calcScreen.textContent;
-	operation = e.target.id;
-	calcScreen.textContent = e.target.id;
+	if(opString) {
+		b = calcScreen.textContent;
+		operate();
+		operation = e.target.id;
+	}
+	else {
+		opString = true;
+		a = calcScreen.textContent;
+		calcScreen.textContent = e.target.id;
+		operation = e.target.id;
+	}
 }
 
 function operate() {
@@ -47,10 +57,11 @@ function operate() {
 const operations = ['add', 'subtract', 'multiply', 'divide'];
 
 function placeNum(e) {
-	let result = '';
+	result = '';
 	let screenContent = calcScreen.textContent;
 	if (operations.includes(calcScreen.textContent) || operated) {
 		result = e.target.id;
+		b = result;
 	}
 	else {
 		if(e.target.id == '.' && calcScreen.textContent.includes('.')) {
@@ -58,6 +69,7 @@ function placeNum(e) {
 		}
 		else {
 			result = screenContent + e.target.id;
+			b = result;
 		}
 	}
 	calcScreen.textContent = result;
@@ -67,27 +79,33 @@ function placeNum(e) {
 
 // calculator operations
 function addition() {
-	result = parseFloat(a) + parseFloat(calcScreen.textContent);
+	result = parseFloat(a) + parseFloat(b);
 	calcScreen.textContent = result;
+	a = result;
 }
 
 function subtraction() {
-	let result = parseFloat(a) - parseFloat(calcScreen.textContent);
+	let result = parseFloat(a) - parseFloat(b);
 	calcScreen.textContent = result;
+	a = result;
 }
 
 function multiplication() {
-	let result = parseFloat(a) * parseFloat(calcScreen.textContent);
+	let result = parseFloat(a) * parseFloat(b);
 	calcScreen.textContent = result;
+	a = result;
 }
 
 function division() {
-	let result = parseFloat(a) / parseFloat(calcScreen.textContent);
+	let result = parseFloat(a) / parseFloat(b);
 	calcScreen.textContent = result;
+	a = result;
 }
 
 function clear() {
 	calcScreen.textContent = '';
 	operated = false;
+	opString = false;
 	a = '';
+	b = '';
 }
